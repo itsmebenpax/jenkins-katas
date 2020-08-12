@@ -27,11 +27,11 @@ pipeline {
             unstash 'code'
             sh 'ci/build-app.sh'
             archiveArtifacts 'app/build/libs/'
+            stash(excludes: '.git', name: 'code')
             sh 'ls'
             deleteDir()
             sh 'ls'
             skipDefaultCheckout true
-            stash(excludes: '.git', name: 'code')
           }
         }
 
