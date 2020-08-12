@@ -31,6 +31,7 @@ pipeline {
             deleteDir()
             sh 'ls'
             skipDefaultCheckout true
+            stash(excludes: '.git', name: 'code')
           }
         }
 
