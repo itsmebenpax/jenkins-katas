@@ -79,8 +79,15 @@ pipeline {
     stage('component test') {
       when {
         beforeAgent true
-        not {
-          branch 'dev/*'
+        anyOf {
+          expression {
+            env.BRANCH_NAME == 'master'
+          }
+
+          expression {
+            changeRequest()
+          }
+
         }
 
       }
